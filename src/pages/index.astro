@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 
-// WhatsApp configuration
-const whatsappNumber = "6282268946552"; // Nomor WA Kedai Pak Oteh
+// WhatsApp configuration (Pesan default untuk tombol di atas)
+const whatsappNumber = "6282268946552"; 
 const whatsappMessage = "Halo Kedai Pak Oteh, saya ingin pesan layanan/isi pulsa.";
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -12,31 +12,36 @@ const variants = [
         name: "Pulsa & Paket Data",
         description: "Melayani semua operator (Telkomsel, Indosat, XL, Tri, Smartfren). Proses cepat dan murah.",
         image: "/images/layanan_pulsa.png",
-        tag: "Paling Laris"
+        tag: "Paling Laris",
+        waMessage: "Halo Kedai Pak Oteh, saya ingin beli pulsa/paket data." // PESAN KHUSUS
     },
     {
         name: "Top Up E-Wallet",
         description: "Isi saldo DANA, OVO, GoPay, ShopeePay, LinkAja dengan mudah dan aman.",
         image: "/images/layanan_ewallet.png",
-        tag: "Praktis"
+        tag: "Praktis",
+        waMessage: "Halo Kedai Pak Oteh, saya ingin top up e-wallet (DANA/OVO/Gopay/dll)." // PESAN KHUSUS
     },
     {
         name: "Top Up Game",
         description: "Top up Diamond Mobile Legends, Free Fire, PUBG, dan game favorit lainnya.",
         image: "/images/layanan_game.png",
-        tag: "Favorit"
+        tag: "Favorit",
+        waMessage: "Halo Kedai Pak Oteh, saya ingin top up game (ML/FF/PUBG/dll)." // PESAN KHUSUS
     },
     {
         name: "Print, Fotocopy & Spanduk",
         description: "Cetak dokumen, fotocopy murah, jilid, print warna.",
         image: "/images/layanan_print.png",
-        tag: "Lengkap"
+        tag: "Lengkap",
+        waMessage: "Halo Kedai Pak Oteh, saya ingin print/fotocopy dokumen." // PESAN KHUSUS
     },
     {
         name: "Transfer Bank",
         description: "Layanan setor tunai dan transfer antar bank dengan biaya admin terjangkau.",
         image: "/images/layanan_bank.png",
-        tag: "Aman"
+        tag: "Aman",
+        waMessage: "Halo Kedai Pak Oteh, saya ingin transfer bank/setor tunai." // PESAN KHUSUS
     }
 ];
 
@@ -106,28 +111,32 @@ const testimonials = [
 					<p class="text-slate-600 max-w-2xl mx-auto">Kami menyediakan berbagai kebutuhan digital dan cetak dengan harga bersahabat dan pelayanan cepat.</p>
 				</div>
 				
-				<!-- Grid diubah agar 5 item terlihat rapi -->
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{variants.map((variant) => (
-						<div class="group bg-white border border-slate-100 rounded-3xl p-6 hover:shadow-2xl hover:border-red-100 transition-all duration-300">
-							<div class="relative mb-6 overflow-hidden rounded-2xl aspect-square bg-slate-50 flex items-center justify-center">
-								<img src={variant.image} alt={variant.name} class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" loading="lazy" />
-								<span class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg">{variant.tag}</span>
-							</div>
-							<div class="space-y-3">
-								<h3 class="text-xl font-bold text-slate-900">{variant.name}</h3>
-								<p class="text-slate-600 text-sm leading-relaxed">{variant.description}</p>
-								
-								<!-- BAGIAN HARGA DIHAPUS, DIGANTI TOMBOL PESAN -->
-								<div class="pt-4 border-t border-slate-50">
-									<a href={whatsappLink} class="w-full flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl group-hover:bg-red-600 group-hover:text-white transition-colors font-semibold text-sm">
-										Pesan Layanan
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-									</a>
+					{variants.map((variant) => {
+						// INI DIA TRIKNYA: Kita bikin link WA khusus untuk masing-masing katalog
+						const dynamicWaLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(variant.waMessage)}`;
+						
+						return (
+							<div class="group bg-white border border-slate-100 rounded-3xl p-6 hover:shadow-2xl hover:border-red-100 transition-all duration-300">
+								<div class="relative mb-6 overflow-hidden rounded-2xl aspect-square bg-slate-50 flex items-center justify-center">
+									<img src={variant.image} alt={variant.name} class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" loading="lazy" />
+									<span class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg">{variant.tag}</span>
+								</div>
+								<div class="space-y-3">
+									<h3 class="text-xl font-bold text-slate-900">{variant.name}</h3>
+									<p class="text-slate-600 text-sm leading-relaxed">{variant.description}</p>
+									
+									<div class="pt-4 border-t border-slate-50">
+										{/* TOMBOL INI SEKARANG MENGGUNAKAN dynamicWaLink */}
+										<a href={dynamicWaLink} class="w-full flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl group-hover:bg-red-600 group-hover:text-white transition-colors font-semibold text-sm">
+											Pesan Layanan
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
-					))}
+						);
+					})}
 				</div>
 			</div>
 		</section>
