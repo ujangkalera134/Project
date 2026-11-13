@@ -11,30 +11,32 @@ const variants = [
     {
         name: "Pulsa & Paket Data",
         description: "Melayani semua operator (Telkomsel, Indosat, XL, Tri, Smartfren). Proses cepat dan murah.",
-        price: "Mulai Rp 5.000",
         image: "/images/layanan_pulsa.png",
         tag: "Paling Laris"
     },
     {
-        name: "Top Up E-Wallet & Game",
-        description: "Isi saldo DANA, OVO, GoPay, ShopeePay, serta top up Diamond ML, FF, dan PUBG.",
-        price: "Tersedia Semua",
-        image: "/images/layanan_topup.png",
+        name: "Top Up E-Wallet",
+        description: "Isi saldo DANA, OVO, GoPay, ShopeePay, LinkAja dengan mudah dan aman.",
+        image: "/images/layanan_ewallet.png",
+        tag: "Praktis"
+    },
+    {
+        name: "Top Up Game",
+        description: "Top up Diamond Mobile Legends, Free Fire, PUBG, dan game favorit lainnya.",
+        image: "/images/layanan_game.png",
         tag: "Favorit"
     },
     {
         name: "Print, Fotocopy & Spanduk",
         description: "Cetak dokumen, fotocopy murah, jilid, print warna, hingga cetak spanduk dan banner.",
-        price: "Mulai Rp 500",
         image: "/images/layanan_print.png",
         tag: "Lengkap"
     },
     {
         name: "Transfer Bank",
         description: "Layanan setor tunai dan transfer antar bank dengan biaya admin terjangkau.",
-        price: "Aman & Cepat",
         image: "/images/layanan_bank.png",
-        tag: "Praktis"
+        tag: "Aman"
     }
 ];
 
@@ -91,7 +93,6 @@ const testimonials = [
 				</div>
 				<div class="relative">
 					<div class="absolute inset-0 bg-red-200 blur-3xl rounded-full opacity-30 animate-pulse"></div>
-					<!-- GANTI GAMBAR HERO DI SINI -->
 					<img src="/images/hero.png" alt="Kedai Pak Oteh" class="relative z-10 rounded-[2.5rem] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 object-cover aspect-[4/3]" loading="eager" />
 				</div>
 			</div>
@@ -104,7 +105,9 @@ const testimonials = [
 					<h2 class="text-4xl md:text-5xl font-black text-slate-900">Layanan <span class="text-red-600">Kami</span></h2>
 					<p class="text-slate-600 max-w-2xl mx-auto">Kami menyediakan berbagai kebutuhan digital dan cetak dengan harga bersahabat dan pelayanan cepat.</p>
 				</div>
-				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+				
+				<!-- Grid diubah agar 5 item terlihat rapi -->
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{variants.map((variant) => (
 						<div class="group bg-white border border-slate-100 rounded-3xl p-6 hover:shadow-2xl hover:border-red-100 transition-all duration-300">
 							<div class="relative mb-6 overflow-hidden rounded-2xl aspect-square bg-slate-50 flex items-center justify-center">
@@ -114,10 +117,12 @@ const testimonials = [
 							<div class="space-y-3">
 								<h3 class="text-xl font-bold text-slate-900">{variant.name}</h3>
 								<p class="text-slate-600 text-sm leading-relaxed">{variant.description}</p>
-								<div class="flex items-center justify-between pt-4 border-t border-slate-50">
-									<span class="text-lg font-black text-red-600">{variant.price}</span>
-									<a href={whatsappLink} class="p-3 bg-red-100 text-red-600 rounded-xl group-hover:bg-red-600 group-hover:text-white transition-colors">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+								
+								<!-- BAGIAN HARGA DIHAPUS, DIGANTI TOMBOL PESAN -->
+								<div class="pt-4 border-t border-slate-50">
+									<a href={whatsappLink} class="w-full flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl group-hover:bg-red-600 group-hover:text-white transition-colors font-semibold text-sm">
+										Pesan Layanan
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 									</a>
 								</div>
 							</div>
